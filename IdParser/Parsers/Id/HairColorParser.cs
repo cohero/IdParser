@@ -5,7 +5,7 @@ namespace IdParser.Parsers.Id
     [Parser("DAZ")]
     public class HairColorParser : AbstractParser
     {
-        public HairColorParser(IdParser.IdentificationCard idCard, Version version, Country country) : base(idCard, version, country)
+        public HairColorParser(IdentificationCard idCard, Version version, Country country) : base(idCard, version, country)
         {
         }
 
@@ -63,7 +63,6 @@ namespace IdParser.Parsers.Id
             {
                 IdCard.HairColor = HairColor.White;
             }
-
             else if (input.EqualsIgnoreCase(HairColor.Bald.ToString()))
             {
                 IdCard.HairColor = HairColor.Bald;

@@ -1,11 +1,12 @@
-﻿using IdParser.Attributes;
+﻿using System;
+using IdParser.Attributes;
 
 namespace IdParser.Parsers.Id
 {
     [Parser("DDK")]
     public class IsOrganDonorParser : AbstractParser
     {
-        public IsOrganDonorParser(IdParser.IdentificationCard idCard, Version version, Country country) : base(idCard, version, country)
+        public IsOrganDonorParser(IdentificationCard idCard, Version version, Country country) : base(idCard, version, country)
         {
         }
 
@@ -18,7 +19,7 @@ namespace IdParser.Parsers.Id
     [Parser("DBH")]
     public class IsOrganDonorLegacyParser : AbstractParser
     {
-        public IsOrganDonorLegacyParser(IdParser.IdentificationCard idCard, Version version, Country country) : base(idCard, version, country)
+        public IsOrganDonorLegacyParser(IdentificationCard idCard, Version version, Country country) : base(idCard, version, country)
         {
         }
 
@@ -27,6 +28,11 @@ namespace IdParser.Parsers.Id
             if (Version == Version.Aamva2000)
             {
                 IdCard.IsOrganDonor = ParseBool(input) ?? false;
+
+                if (input.Equals("DONOR", StringComparison.OrdinalIgnoreCase))
+                {
+                    IdCard.IsOrganDonor = true;
+                }
             }
         }
     }
